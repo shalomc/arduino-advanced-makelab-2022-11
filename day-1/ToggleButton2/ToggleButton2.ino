@@ -1,6 +1,6 @@
 const int ledPin = 13;          // choose the pin for the LED
 const int inputPin = 2;         // choose the input pin (for a pushbutton)
-const int speakerPin = 9;
+
 int button_value = 0;                    // variable for reading the pin status
 boolean is_turned_on = false;
 
@@ -23,7 +23,7 @@ void loop() {
     if (is_turned_on) {
       digitalWrite(ledPin, HIGH);  // turn LED ON
     } else {
-      digitalWrite(ledPin, LOW);
+      digitalWrite(ledPin, LOW);   // turn LED OFF
     }
 
     // loop while button pressed
