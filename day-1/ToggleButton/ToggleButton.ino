@@ -15,7 +15,7 @@ void loop() {
   // We initialized the input pin with INPUT_PULLUP
   // therefore LOW means pressed, HIGH means not pressed.
   if (button_value == LOW ) {            // check if the input is HIGH
-    is_turned_on = !is_turned_on; // flip button
+    is_turned_on = !is_turned_on;   // flip switch 
     digitalWrite(ledPin, is_turned_on);
     // loop while button pressed
     while (digitalRead(inputPin) == LOW) {

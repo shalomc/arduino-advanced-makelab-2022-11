@@ -5,7 +5,7 @@ Usually we want code to be readable. Sometimes we make it less readable to meet 
 These 2 sketches toggle a switch state between on and off. Each click will change the state. 
 Both sketches are almost identical. 
 
-To toggle the switch state, `ToggleButton` uses this short code
+To toggle the switch state, `ToggleButton` uses this terse code
 ```
   if (button_value == LOW ) {            // check if the input is HIGH
     is_turned_on = !is_turned_on; 
@@ -27,4 +27,9 @@ To toggle the switch state, `ToggleButton` uses this short code
     }
   }
 ```
+There is a small difference is in the program size after compilation. The terse program uses 30 bytes less. This is not important in our case, but sometimes it will be critical. 
+
+`ToggleButton`: Sketch uses 1128 bytes (3%) of program storage space. Maximum is 30720 bytes.
+
+`ToggleButton2`: Sketch uses 1158 bytes (3%) of program storage space. Maximum is 30720 bytes.
 
