@@ -36,4 +36,4 @@ There is a small difference is in the program size after compilation. The terse 
 
 
 ## fade 
-![Sine waves](../images/TrafficLight-02-fade-image-01.png "Pure sine waves")
+![Sine waves](../common/images/TrafficLight-02-fade-image-01.png "Pure sine waves")
