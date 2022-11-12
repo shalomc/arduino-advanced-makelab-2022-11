@@ -4,7 +4,7 @@ This is going to be the place to put my code, variations, experimentations and m
 There are folders for each day, and a common folder for related stuff: python simulations, images, and fun.
 
 To replicate this into your environment, do the following: 
-1. Setup git and optionally install the GitHub CLI 
+1. Setup git and optionally install the GitHub CLI - https://docs.github.com/en/get-started/quickstart/set-up-git
 2. Start a command line in windows
 3. In the command line execute   `cd %USERPROFILE%\Documents\Arduino`
 4. Clone the repository: 
