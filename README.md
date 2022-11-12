@@ -1,4 +1,4 @@
-# arduino-advanced-makelab-2022-11
+# Makelab Yahud November 2022 - The arduino advanced workshop
 This is going to be the place to put my code, variations, experimentations and musings that relate to the advanced arduino workshop. 
 
 There are folders for each day, and a common folder for related stuff: python simulations, images, and fun.
@@ -11,5 +11,3 @@ To replicate this into your environment, do the following:
 	* Either execute `gh repo clone shalomc/arduino-advanced-makelab-2022-11`
 	* Or execute `git clone https://github.com/shalomc/arduino-advanced-makelab-2022-11.git`
 5. To periodically refresh the repository, start the commandline in the `arduino-advanced-makelab-2022-11` folder and execute `git pull`
- 
-
