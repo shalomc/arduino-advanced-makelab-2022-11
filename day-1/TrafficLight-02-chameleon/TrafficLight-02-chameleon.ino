@@ -11,11 +11,17 @@ const int analogInPin = A0;  // Analog input pin that the potentiometer is attac
 int sensorValue = 0;        // value read from the potentiometer
 boolean DEBUG=false; 
 
-int trafficLightsArray[3]; 
-/* 0 = green
- * 1 = yellow
- * 2 = red
- */
+struct trafficLight{
+   String pinName; 
+   int pinNumber;
+   int pinValue;
+};
+
+trafficLight trafficLightsArray[3] = {
+  {"Green", pinGREEN,0},
+  {"Yellow", pinYELLOW,0},
+  {"Red", pinRED,0}
+};
 
 void setup() {
   Serial.begin(9600);
@@ -25,30 +31,30 @@ void loop() {
   delay(1); 
   sensorValue = analogRead(analogInPin);
   setTrafficLightValues( sensorValue, trafficLightsArray ) ;
-  /* 
-   *  This could work if I could take advantage of an ordered array, but unfortunately my pins are not in order
-      for (int p=0; p<3;p++) {
-        analogWrite(pinGreen + p, trafficLightsArray[p]);
+  for (int p=0; p<3;p++) {
+    analogWrite(trafficLightsArray[p].pinNumber, trafficLightsArray[p].pinValue);
   }
-      I have to go the long, explicit way
-   */
-  analogWrite(pinGREEN, trafficLightsArray[0]);
-  analogWrite(pinYELLOW, trafficLightsArray[1]);
-  analogWrite(pinRED, trafficLightsArray[2]);
+/* The naive, explicit way
+ * 
+  analogWrite(pinGREEN, trafficLightsArray[0].pinValue);
+  analogWrite(pinYELLOW, trafficLightsArray[1].pinValue);
+  analogWrite(pinRED, trafficLightsArray[2].pinValue);
+ */
   if (DEBUG) {
     Serial.print("sensor = ");
     Serial.print(sensorValue);
-    Serial.print(" green= ");
-    Serial.print(trafficLightsArray[0]);
-    Serial.print(" yellow= ");
-    Serial.print(trafficLightsArray[1]);
-    Serial.print(" red= ");
-    Serial.println(trafficLightsArray[2]);
+    for (int p=0;p<3;p++) {
+      Serial.print(" ; ");
+      Serial.print(trafficLightsArray[p].pinName);
+      Serial.print("= ");
+      Serial.print(trafficLightsArray[p].pinValue);
+    }
+    Serial.println(); 
   }
 }
 
 
-void setTrafficLightValues(int sensorValue, int (&lightsArray)[3] ) {
+void setTrafficLightValues(int sensorValue, trafficLight (&lightsArray)[3] ) {
   /*
    * First we map the sensor value to 0,1,2 
    * then we set the appropriate value in the lights array
@@ -56,6 +62,6 @@ void setTrafficLightValues(int sensorValue, int (&lightsArray)[3] ) {
    */
   int mappedValue = map(sensorValue, 0, 1023, 0, 2) ; 
   for (int p=0; p<3;p++) {
-    lightsArray[p] = 255 * (p==mappedValue); 
+    lightsArray[p].pinValue = 255 * (p==mappedValue); 
   }
 }
