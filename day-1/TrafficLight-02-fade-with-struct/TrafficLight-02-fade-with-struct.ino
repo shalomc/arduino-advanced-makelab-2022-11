@@ -15,6 +15,7 @@ const int pinGREEN = 7 ;
 const int analogInPin = A0;  // Analog input pin that the potentiometer is attached to
 int sensorValue = 0;        // value read from the potentiometer
 boolean DEBUG=true; 
+boolean DEBUGx2=false; 
 
 // Is it better to use a struct instead of array?
 
@@ -70,7 +71,7 @@ trafficLight setTrafficLightValues(int sensorValue ) {
   //lightsArray.yellow = maxYellow-int(abs(int(valueYellow-512))/int(512/maxYellow)); 
   lightsArray.red = map(valueRed,0,1000,0,maxRed);  
   
-  if (DEBUG) {
+  if (DEBUGx2) {
     Serial.print("sensor = ");
     Serial.print(sensorValue);
     Serial.print(" sinGreen= ");
