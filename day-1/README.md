@@ -1,5 +1,5 @@
 # Remarks on the included code
-## ToggleButton and ToggleButton2
+## ToggleButton and ToggleButton-verbose
 Usually we want code to be readable. Sometimes we make it less readable to meet constraints. 
 
 These 2 sketches toggle a switch state between on and off. Each click will change the state. 
@@ -12,7 +12,7 @@ To toggle the switch state, `ToggleButton` uses this terse code
     digitalWrite(ledPin, is_turned_on);
   }
 ```
-`ToggleButton2`	uses the following code, which appears to be more readable
+`ToggleButton-verbose`	uses the following code, which appears to be more readable
 ```
   if (button_value == LOW ) {            // check if the input is HIGH
     if (is_turned_on) { 
@@ -31,7 +31,7 @@ There is a small difference is in the program size after compilation. The terse 
 
 `ToggleButton`: Sketch uses 1128 bytes (3%) of program storage space. Maximum is 30720 bytes. 
 
-`ToggleButton2`: Sketch uses 1158 bytes (3%) of program storage space. Maximum is 30720 bytes. 
+`ToggleButton-verbose`: Sketch uses 1158 bytes (3%) of program storage space. Maximum is 30720 bytes. 
 
 
 
