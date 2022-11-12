@@ -25,6 +25,13 @@ void loop() {
   delay(1); 
   sensorValue = analogRead(analogInPin);
   setTrafficLightValues( sensorValue, trafficLightsArray ) ;
+  /* 
+   *  This could work if I could take advantage of an ordered array, but unfortunately my pins are not in order
+      for (int p=0; p<3;p++) {
+        analogWrite(pinGreen + p, trafficLightsArray[p]);
+  }
+      I have to go the long, explicit way
+   */
   analogWrite(pinGREEN, trafficLightsArray[0]);
   analogWrite(pinYELLOW, trafficLightsArray[1]);
   analogWrite(pinRED, trafficLightsArray[2]);
@@ -42,6 +49,11 @@ void loop() {
 
 
 void setTrafficLightValues(int sensorValue, int (&lightsArray)[3] ) {
+  /*
+   * First we map the sensor value to 0,1,2 
+   * then we set the appropriate value in the lights array
+   * The expression (p==mappedValue) will have the value of TRUE or FALSE, which are equivalent to 1 or 0. 
+   */
   int mappedValue = map(sensorValue, 0, 1023, 0, 2) ; 
   for (int p=0; p<3;p++) {
     lightsArray[p] = 255 * (p==mappedValue); 
