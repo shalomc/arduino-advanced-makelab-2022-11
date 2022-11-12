@@ -35,5 +35,6 @@ There is a small difference is in the program size after compilation. The terse 
 
 
 
-## fade 
+## Traffic Lights fade 
+Fading is best achieved by applying monothonic increasing or decreasing functions (פונקציות עולות ויורדות) in relevant ranges. on the 
 ![Sine waves](../common/images/TrafficLight-02-fade-image-01.png "Pure sine waves")
