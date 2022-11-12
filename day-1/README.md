@@ -36,5 +36,26 @@ There is a small difference is in the program size after compilation. The terse 
 
 
 ## Traffic Lights fade 
-Fading is best achieved by applying monothonic increasing or decreasing functions (פונקציות עולות ויורדות) in relevant ranges. on the 
-![Sine waves](../common/images/TrafficLight-02-fade-image-01.png "Pure sine waves")
+
+All graphs are generated in Python (see `/common/python` ).
+
+Fading is best achieved by applying monothonic increasing or decreasing functions (פונקציות עולות ויורדות) in relevant ranges. 
+
+First let's check out linear equations. 
+
+![Linear equations](../common/images/TrafficLight-02-fade-image-00.png "Linear equations")
+
+But there are other options, like sine waves, inverted absolute, and even paraboles. 
+
+![Sine equations](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
+
+![Sine + reverse absolute](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
+
+![Sine equations](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
+
+### FUN with FUNctions
+Functions can be manipulated in several ways. 
+* Inverting a function: multiply by -1
+* Offset by c on X axis: f(x+c)
+* Offset by c on Y axis: f(x) + c
+* Flatten or expand value by c factor: c*f(x)
