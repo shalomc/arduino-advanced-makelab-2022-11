@@ -1,9 +1,17 @@
+#include <math.h>
+
 // based on AnalogInOutSerial
 // fade between traffic lights according to the potentiometer state
+/* 
+ Use a C array to manage the traffic lights . 
+   array[0] = green
+   array[1] = yellow
+   array[2] = red
+ A C array is good to track a list of items, for example a list of pins to write to in order
+*/
 
 // define the analog pins that your traffic light is connected to
 
-#include <math.h>
 const int pinRED = 9 ; 
 const int pinYELLOW = 6 ;
 const int pinGREEN = 7 ;
@@ -14,13 +22,6 @@ boolean DEBUG=true;
 
 // Is it better to use a struct instead of array?
 
-struct trafficLight{
-   int green;
-   int yellow;
-   int red;
-};
-
-trafficLight traffic_light; 
 int trafficLightsArray[3]; 
 /* 0 = green
  * 1 = yellow

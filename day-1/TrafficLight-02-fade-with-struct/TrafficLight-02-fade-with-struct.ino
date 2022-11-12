@@ -1,9 +1,13 @@
+#include <math.h>
+
 // based on AnalogInOutSerial
 // fade between traffic lights according to the potentiometer state
+/* 
+ Use a C struct to manage the traffic lights 
+ A C struct is good to track an object with well known and distinct values
+*/
 
 // define the analog pins that your traffic light is connected to
-
-#include <math.h>
 const int pinRED = 9 ; 
 const int pinYELLOW = 6 ;
 const int pinGREEN = 7 ;
