@@ -49,9 +49,9 @@ But there are other options, like sine waves, inverted absolute, and even parabo
 
 ![Sine equations](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
 
-![Sine + reverse absolute](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
+![G Sine ; Y reverse absolute; R Sine](../common/images/TrafficLight-02-fade-image-02.png "G Sine ; Y reverse absolute; R Sine")
 
-![Sine equations](../common/images/TrafficLight-02-fade-image-01.png "Sine equations")
+![G Sine ; Y parabole; R Sine](../common/images/TrafficLight-02-fade-image-03.png "G Sine ; Y parabole; R Sine")
 
 ### FUN with FUNctions
 Functions can be manipulated in several ways. 
