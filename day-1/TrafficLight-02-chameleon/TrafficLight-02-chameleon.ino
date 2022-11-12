@@ -11,13 +11,13 @@ const int analogInPin = A0;  // Analog input pin that the potentiometer is attac
 int sensorValue = 0;        // value read from the potentiometer
 boolean DEBUG=false; 
 
-struct trafficLight{
+struct oneTrafficLight{
    String pinName; 
    int pinNumber;
    int pinValue;
 };
 
-trafficLight trafficLightsArray[3] = {
+oneTrafficLight trafficLightsArray[3] = {
   {"Green", pinGREEN,0},
   {"Yellow", pinYELLOW,0},
   {"Red", pinRED,0}
@@ -54,7 +54,7 @@ void loop() {
 }
 
 
-void setTrafficLightValues(int sensorValue, trafficLight (&lightsArray)[3] ) {
+void setTrafficLightValues(int sensorValue, oneTrafficLight (&lightsArray)[3] ) {
   /*
    * First we map the sensor value to 0,1,2 
    * then we set the appropriate value in the lights array
