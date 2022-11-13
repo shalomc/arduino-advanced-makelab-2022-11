@@ -36,7 +36,9 @@ There is a small difference is in the program size after compilation. The terse 
 
 
 ## Traffic Lights fade 
+There are 3 solutions that differ in the programming approach, starting from the quick and dirty and moving to a scalable sketch. 
 
+### Selection of the function to fade
 All graphs are generated in Python (see `/common/python` ).
 
 Fading is best achieved by applying monothonic increasing or decreasing functions (פונקציות עולות ויורדות) in relevant ranges. 
