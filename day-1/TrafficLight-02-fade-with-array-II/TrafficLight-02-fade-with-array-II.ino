@@ -54,11 +54,15 @@ void loop() {
   for (int p = 0; p < numOfPins; p++) {
     analogWrite(trafficLightsArray[p].pinNumber, trafficLightsArray[p].pinValue);
     if (DEBUG) {
+      Serial.print(" ; ");
       Serial.print(trafficLightsArray[p].pinName);
       Serial.print("= ");
       Serial.print(trafficLightsArray[p].pinValue);
     }
   }
+    if (DEBUG) {
+      Serial.println();
+    }
 }
 
 
@@ -91,5 +95,9 @@ void setTrafficLightValues(int sensorValue, trafficLight (&lightsArray)[numOfPin
       Serial.print(returnedValueAdjusted);
     }
   }
+  if (DEBUG) {
+    Serial.println();
+  }
+
 
 }
