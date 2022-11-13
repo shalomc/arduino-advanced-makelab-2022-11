@@ -3,7 +3,7 @@
 // based on AnalogInOutSerial
 // fade between traffic lights according to the potentiometer state
 /*
-  Use a C array to manage the traffic lights .
+  Use a C array of structs to manage the traffic lights .
    array[0] = green
    array[1] = yellow
    array[2] = red
