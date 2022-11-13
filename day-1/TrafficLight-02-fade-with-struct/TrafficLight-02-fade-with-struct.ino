@@ -59,7 +59,7 @@ trafficLight setTrafficLightValues(int sensorValue ) {
   trafficLight lightsArray; 
 
   float sinGreen = sin((float)pi_map/100.0 + 2.0 * PI / 2.0)+1; 
-  float sinYellow = sin((float)pi_map/100.0 + 0.0 * PI / 2.0);
+  float sinYellow = sin((float)pi_map/100.0 + 0.0 * PI / 2.0)+0;
   float sinRed = sin((float)pi_map/100.0 + 2.0 * PI / 2.0)+1;
 
   int valueGreen = (int)(sinGreen*1000.0) * (sensorValue < 512); 
