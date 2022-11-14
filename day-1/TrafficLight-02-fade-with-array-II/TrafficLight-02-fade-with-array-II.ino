@@ -95,7 +95,7 @@ void setTrafficLightValues(int sensorValue, trafficLight (&lightsArray)[numOfPin
       Serial.print(returnedValueAdjusted);
     }
   }
-  if (DEBUG) {
+  if (DEBUGx2) {
     Serial.println();
   }
 
