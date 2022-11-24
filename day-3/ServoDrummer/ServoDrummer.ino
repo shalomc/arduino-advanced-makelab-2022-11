@@ -1,46 +1,46 @@
 #include <Servo.h>
 
+#define MAX_SCORE_SIZE 300
+
 int servoPin = 3;
 Servo servo;
-int angle = 90; // servo position in degrees
 
-int full = 1000; 
-int half = 500; 
-int quarter = 250; 
-int eighth = 125; 
 
-void doBeat() {
+int initialAngle = 90; // servo position in degrees
 
-  int delayVal = 60;
+// Beats 
+int full = 600; 
+int half = full/2; 
+int quarter = half/2; 
+int eighth = quarter/2; 
 
-  servo.write(160); //down
-
-  delay(delayVal);
-
-  servo.write(100); //up
-
-  delay(delayVal);
-
-}
-
+int tuneFlipper = 1; 
 
 void setup() {
   servo.attach(servoPin);
-  servo.write(angle);
+  servo.write(initialAngle);
 }
 
 
 void loop() {
-
-  WilemTel(); // WilemTel drum routine
-
-  delay(40);
+	switch (tuneShuffle) {
+		case 1: 
+			WilemTel();
+			break;
+		case 2: 
+			Bolero();
+			break;
+		default: 
+			tuneFlipper=0; 
+			break; 
+	}	
+	tuneFlipper++; 
+	delay(40);
 
 }
 
 void WilemTel() {
-	int scoreSize = 200; 
-	int notes[scoreSize] = { 
+	int beats[MAX_SCORE_SIZE] = { 
 		eighth, eighth, quarter, 
 		eighth, eighth, quarter, 
 		eighth, eighth, quarter,  quarter,  quarter, 
@@ -53,10 +53,43 @@ void WilemTel() {
 		eighth, eighth, half, 
 		eighth, eighth, eighth, quarter, quarter, quarter
 	};
-	for (int note=0 ; note < scoreSize; note++) {
-		if (notes[note]>0) {
+	playScore(beats); 
+ }
+
+
+void Bolero() {
+	int beats[MAX_SCORE_SIZE] = { 
+		full, quarter, quarter, quarter,
+		full, quarter, quarter, quarter,
+		full, full, 
+		full, quarter, quarter, quarter,
+		full, quarter, quarter, quarter, quarter, quarter, quarter, quarter, quarter,quarter
+	};
+	for (int i=0 ; i<2; i++) {
+		playScore(beats); 
+	}
+ }
+
+void doBeat() {
+  int delayVal = 60;
+  servo.write(160); //down
+  delay(delayVal);
+  servo.write(100); //up
+//  delay(delayVal);
+}
+
+
+
+
+void playScore(int (&notesArray)[MAX_SCORE_SIZE] ) {
+	// (sizeof(notesArray)/sizeof(int))-1 
+	//will always be the number of items in the array
+	for (int note=0 ; note < (sizeof(notesArray)/sizeof(int)) - 1 ; note++) {
+		if (notesArray[note]>0) {
 			doBeat(); 
-			delay(notes[note]); 
+			delay(notesArray[note]); 
 		}
 	}
 }
+
+
