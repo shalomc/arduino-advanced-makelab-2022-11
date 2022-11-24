@@ -21,15 +21,17 @@
 
 TwoWheelDriveRobot robot(MOTOR1_ENABLE, MOTOR1_PIN1, MOTOR1_PIN2, MOTOR2_ENABLE, MOTOR2_PIN1, MOTOR2_PIN2);
 
-
-
 void setup() {
   Serial.begin(9600);
 }
 
 void loop() {
+  // light sensors have different values at rest, so trying to equalise them 
   int sensor1Value = analogRead(SENSOR1_PIN) * SENSOR1_GAIN;
   int sensor2Value = analogRead(SENSOR2_PIN) * SENSOR2_GAIN;
+  
+  // The control is inspired by PID. 
+  // The motors will increase or decrease their speed gradually based on the difference between the sensors readings (the error)
   int sensorDifference = sensor1Value - sensor2Value;
   int speedDifference = map(sensorDifference, -200, 200, -SPEED, SPEED);
   bool isLight = sensor1Value < DARKNESS_THRESHOLD && sensor2Value < DARKNESS_THRESHOLD; 
