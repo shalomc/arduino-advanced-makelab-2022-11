@@ -14,7 +14,7 @@ int half = full / 2;
 int quarter = half / 2;
 int eighth = quarter / 2;
 
-int tuneFlipper = 1;
+int tuneShuffle = 1;
 
 void setup() {
   servo.attach(servoPin);
@@ -26,20 +26,23 @@ void loop() {
   switch (tuneShuffle) {
     case 1:
       WilemTel();
+      tuneShuffle++;
       break;
     case 2:
       Bolero();
+      tuneShuffle++;
       break;
     default:
-      tuneFlipper = 0;
+      tuneShuffle = 1;
       break;
   }
-  tuneFlipper++;
   delay(40);
 
 }
 
 void WilemTel() {
+  // uninitialized array members are empty-initialized to 0
+  // https://en.cppreference.com/w/c/language/array_initialization
   int beats[MAX_SCORE_SIZE] = {
     eighth, eighth, quarter,
     eighth, eighth, quarter,
@@ -81,13 +84,13 @@ void doBeat() {
 
 
 
-void playScore(int (&notesArray)[MAX_SCORE_SIZE] ) {
-  // (sizeof(notesArray)/sizeof(int))-1
+void playScore(int (&beatsArray)[MAX_SCORE_SIZE] ) {
+  // (sizeof(beatsArray)/sizeof(int))-1
   //will always be the number of items in the array
-  for (int note = 0 ; note < (sizeof(notesArray) / sizeof(int)) - 1 ; note++) {
-    if (notesArray[note] > 0) {
+  for (int note = 0 ; note < (sizeof(beatsArray) / sizeof(int)) - 1 ; note++) {
+    if (beatsArray[note] > 0) {
       doBeat();
-      delay(notesArray[note]);
+      delay(beatsArray[note]);
     }
   }
 }
