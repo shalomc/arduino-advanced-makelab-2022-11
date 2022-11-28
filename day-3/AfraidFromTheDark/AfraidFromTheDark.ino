@@ -1,38 +1,42 @@
-
 // #define TWOWHEELDRIVE_DEBUG
 
 #include "TwoWheelDriveRobot.h"
 #include "drummer_ns.h"
 
 #define SEEK_ATTENTION true
+#define DIAGNOSTIC_MODE false
+#define DEBUG true
 
+// robot movement definitions 
 #define MOTOR1_ENABLE 10
 #define MOTOR1_PIN1 9
 #define MOTOR1_PIN2 8
-#define MOTOR1_GAIN 1
 
+#define MOTOR2_ENABLE 5
 #define MOTOR2_PIN1 6
 #define MOTOR2_PIN2 7
-#define MOTOR2_ENABLE 5
-#define MOTOR2_GAIN 1
 
+// robot adjustments 
+#define MOTOR1_GAIN 1
+#define MOTOR2_GAIN 1
 #define BASE_ROBOT_SPEED 100
 
+// light sensors parameters 
 #define DARKNESS_THRESHOLD 300
 #define SENSOR1_PIN  A6
 #define SENSOR2_PIN  A7
 #define SENSOR1_GAIN  1
 #define SENSOR2_GAIN  1.4
 
+// servo parameters 
 #define SERVO_PIN_1 3
-#define DIAGNOSTIC_MODE false
-#define DEBUG true
 
+// initialise robot
 TwoWheelDriveRobot robot(MOTOR1_ENABLE, MOTOR1_PIN1, MOTOR1_PIN2, MOTOR2_ENABLE, MOTOR2_PIN1, MOTOR2_PIN2);
 
 void setup() {
   Serial.begin(9600);
-  if (SEEK_ATTENTION) { 
+  if ( SEEK_ATTENTION ) { 
     Drum::initialise( SERVO_PIN_1);
   }
 }
@@ -49,11 +53,10 @@ void loop() {
   bool isLight = sensor1Value < DARKNESS_THRESHOLD && sensor2Value < DARKNESS_THRESHOLD;
   int baseSpeed1 = int((BASE_ROBOT_SPEED + speedDifference) / 2);
   int baseSpeed2 = int((BASE_ROBOT_SPEED - speedDifference) / 2);
+  // asymetric motor speed is adjusted by the motor gain parameters. 
+  // a function is used so that non-linear gain can be computed
   int speedLeft  = isLight * baseSpeed1 * calculateMotorGain(1, baseSpeed1);
   int speedRight = isLight * baseSpeed2 * calculateMotorGain(2, baseSpeed2);
-
-  //  int speedLeft = isLight * int((BASE_ROBOT_SPEED + speedDifference) / 2);
-  //  int speedRight = isLight * int((BASE_ROBOT_SPEED - speedDifference) / 2);
 
 
   if (!isLight && SEEK_ATTENTION ) {
