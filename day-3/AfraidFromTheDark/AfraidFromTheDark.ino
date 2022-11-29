@@ -8,16 +8,19 @@
 #define DEBUG true
 
 // robot movement definitions 
-#define MOTOR1_ENABLE 10
-#define MOTOR1_PIN1 9
-#define MOTOR1_PIN2 8
+// #define MOTOR1_ENABLE 10
+// #define MOTOR1_PIN1 9
+// #define MOTOR1_PIN2 8
+#define MOTOR1_ENABLE 3
+#define MOTOR1_PIN1 2
+#define MOTOR1_PIN2 1
 
 #define MOTOR2_ENABLE 5
 #define MOTOR2_PIN1 6
 #define MOTOR2_PIN2 7
 
 // robot adjustments 
-#define MOTOR1_GAIN 1
+#define MOTOR1_GAIN 1.5
 #define MOTOR2_GAIN 1
 #define BASE_ROBOT_SPEED 100
 
@@ -29,7 +32,7 @@
 #define SENSOR2_GAIN  1.4
 
 // servo parameters 
-#define SERVO_PIN_1 3
+#define SERVO_PIN_1 13
 
 // initialise robot
 TwoWheelDriveRobot robot(MOTOR1_ENABLE, MOTOR1_PIN1, MOTOR1_PIN2, MOTOR2_ENABLE, MOTOR2_PIN1, MOTOR2_PIN2);

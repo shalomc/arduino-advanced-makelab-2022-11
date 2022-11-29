@@ -2,7 +2,7 @@
 
 #define MAX_SCORE_SIZE 300
 
-int servoPin = 3;
+int servoPin = 13;
 Servo servo;
 
 
