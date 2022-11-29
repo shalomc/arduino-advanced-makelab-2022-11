@@ -51,9 +51,9 @@ namespace Drum {
   void  initialise(int servoPin, int baseFullDuration = DRUM_BASE_FULL_STOP_DURATION) {
     // beats
     Drum::full = baseFullDuration;
-    Drum::half = full / 2;
-    Drum::quarter = half / 2;
-    Drum::eighth = quarter / 2;
+    Drum::half = Drum::full / 2;
+    Drum::quarter = Drum::half / 2;
+    Drum::eighth = Drum::quarter / 2;
     Drum::servo.attach(servoPin );
     Drum::servo.write(SERVO_INITIAL_ANGLE);
     Serial.print("Initialised servo at pin ");
@@ -74,7 +74,7 @@ namespace Drum {
     //will always be the number of items in the array
     for (int note = 0 ; note < (sizeof(beatsArray) / sizeof(int)) - 1 ; note++) {
       if (beatsArray[note] > 0) {
-        doBeat();
+        Drum::doBeat();
         delay(beatsArray[note]);
       }
     }
@@ -82,11 +82,12 @@ namespace Drum {
   ////////////////////////////////////////////////////////////////////////////
   void Bolero() {
     int beatsArray[DRUM_MAX_SCORE_SIZE] = {
-      full, quarter, quarter, quarter,
-      full, quarter, quarter, quarter,
-      full, full,
-      full, quarter, quarter, quarter,
-      full, quarter, quarter, quarter, quarter, quarter, quarter, quarter, quarter, quarter
+      Drum::full, Drum::quarter, Drum::quarter, Drum::quarter,
+      Drum::full, Drum::quarter, Drum::quarter, Drum::quarter,
+      Drum::full, Drum::full,
+      Drum::full, Drum::quarter, Drum::quarter, Drum::quarter,
+      Drum::full, Drum::quarter, Drum::quarter, Drum::quarter, 
+      Drum::quarter, Drum::quarter, Drum::quarter, Drum::quarter, Drum::quarter, Drum::quarter
     };
     Drum::playScore(beatsArray);
   }
@@ -95,17 +96,17 @@ namespace Drum {
     // uninitialized array members are empty-initialized to 0
     // https://en.cppreference.com/w/c/language/array_initialization
     int beatsArray[DRUM_MAX_SCORE_SIZE] = {
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,  quarter,  quarter,
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,  quarter,  quarter ,
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,
-      eighth, eighth, quarter,  quarter,  quarter,
-      eighth, eighth, half,
-      eighth, eighth, eighth, quarter, quarter, quarter
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,  Drum::quarter,  Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,  Drum::quarter,  Drum::quarter ,
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::quarter,  Drum::quarter,  Drum::quarter,
+      Drum::eighth, Drum::eighth, Drum::half,
+      Drum::eighth, Drum::eighth, Drum::eighth, Drum::quarter, Drum::quarter, Drum::quarter
     };
     Drum::playScore(beatsArray);
   }
