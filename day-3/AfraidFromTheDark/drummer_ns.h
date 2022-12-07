@@ -10,10 +10,10 @@
 
 void setup(){  
   int pinNumber = 3;
-  Drum::initialise(pinNumber);
+  Drum::start(pinNumber);
   // or you can also overide the defaulty stop duration of 600 with your own value, like the following 2 lines show
   // int full_stop_duration = 600; 
-  // Drum::initialise(pinNumber, full_stop_duration);
+  // Drum::start(pinNumber, full_stop_duration);
 }
 
 examples to put in your loop() function
@@ -48,16 +48,20 @@ namespace Drum {
   int quarter ;
   int eighth ;
   
-  void  initialise(int servoPin, int baseFullDuration = DRUM_BASE_FULL_STOP_DURATION) {
+  void  start(int servoPin, int baseFullDuration = DRUM_BASE_FULL_STOP_DURATION) {
     // beats
     Drum::full = baseFullDuration;
     Drum::half = Drum::full / 2;
     Drum::quarter = Drum::half / 2;
     Drum::eighth = Drum::quarter / 2;
     Drum::servo.attach(servoPin );
-    Drum::servo.write(SERVO_INITIAL_ANGLE);
+    // Drum::servo.write(SERVO_INITIAL_ANGLE);
     Serial.print("Initialised servo at pin ");
     Serial.println(servoPin);
+  }
+  ////////////////////////////////////////////////////////////////////////////
+  void  stop() {
+    Drum::servo.detach( );
   }
   ////////////////////////////////////////////////////////////////////////////
   void doBeat() {

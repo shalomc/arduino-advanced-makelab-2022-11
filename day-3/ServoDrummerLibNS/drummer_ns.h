@@ -47,6 +47,7 @@ namespace Drum {
   int half ;
   int quarter ;
   int eighth ;
+  int _servoPin; 
   
   void  initialise(int servoPin, int baseFullDuration = DRUM_BASE_FULL_STOP_DURATION) {
     // beats
@@ -54,10 +55,18 @@ namespace Drum {
     Drum::half = full / 2;
     Drum::quarter = half / 2;
     Drum::eighth = quarter / 2;
-    Drum::servo.attach(servoPin );
-    Drum::servo.write(SERVO_INITIAL_ANGLE);
+    // Drum::servo.attach(_servoPin );
+    // Drum::servo.write(SERVO_INITIAL_ANGLE);
     Serial.print("Initialised servo at pin ");
     Serial.println(servoPin);
+  }
+  ////////////////////////////////////////////////////////////////////////////
+  void start() {
+    Drum::servo.attach(_servoPin );
+  }
+  ////////////////////////////////////////////////////////////////////////////
+  void stop() {
+    Drum::servo.detach( );
   }
   ////////////////////////////////////////////////////////////////////////////
   void doBeat() {

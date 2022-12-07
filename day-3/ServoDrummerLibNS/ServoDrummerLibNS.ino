@@ -5,7 +5,7 @@
 
 // parameters for the robot engines
 // parameters for the drumming servo
-#define SERVO_PIN_1  13
+#define SERVO_PIN_1  8
 #define DIAGNOSTIC_MODE false
 
 int tuneShuffle = 1;

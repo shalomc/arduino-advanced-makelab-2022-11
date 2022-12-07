@@ -87,7 +87,7 @@ void doBeat() {
 void playScore(int (&beatsArray)[MAX_SCORE_SIZE] ) {
   // (sizeof(beatsArray)/sizeof(int))-1
   //will always be the number of items in the array
-  for (int note = 0 ; note < (sizeof(beatsArray) / sizeof(int)) - 1 ; note++) {
+  for (int note = 0 ; note < MAX_SCORE_SIZE ; note++) {
     if (beatsArray[note] > 0) {
       doBeat();
       delay(beatsArray[note]);
