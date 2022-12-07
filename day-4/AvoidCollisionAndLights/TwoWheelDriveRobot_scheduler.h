@@ -5,7 +5,7 @@
 #include "TwoWheelDriveRobot.h"
 
 #define DEBUG false
-#define QUEUE_SIZE 2  // we only need 1 atm :) 
+#define QUEUE_SIZE 1  // we only need 1 atm :) 
 
 #define MOVE_FORWARD 0
 #define MOVE_BACKWARD 1
@@ -48,7 +48,7 @@ class TwoWheelDriveRobot_Scheduler: public TwoWheelDriveRobot {
 
     */
     void schedule(int speed1, int speed2, int interval, int movement) {
-      if (stateQueue.isEmpty()) {    // we don't have anything *planned* to do. Could use stateQueue.itemCount()
+      if (stateQueue.itemCount() < QUEUE_SIZE ) {    // 0=we don't have anything *planned* to do. 
         robotState_struct queuedState = { speed1, speed2, interval, movement };
         stateQueue.enqueue( queuedState );
         if (DEBUG ) {
