@@ -35,7 +35,9 @@
 // Neopixel parms
 #define NEOPIXEL_PIN 4
 #define NUMPIXELS 16
-const int intervalOfLight = 30;
+
+// set as variable because we may want to play with value
+int intervalOfLight = 30;
 
 // initialise
 NeopixelFlasher neopixeler(NUMPIXELS, NEOPIXEL_PIN, intervalOfLight );

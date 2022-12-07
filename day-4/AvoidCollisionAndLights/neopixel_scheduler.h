@@ -23,7 +23,8 @@ class NeopixelFlasher {
       pixels.begin();
       pixelsState = {0, 0, 0, 0, 0};
     }
-
+    /////////////////////////////////////////////////////////////////////////
+    // simple lights. 
     void Update() {
       unsigned long currentMillis = millis();
       if (currentMillis - pixelsState.previousMillis > interval) {
@@ -38,6 +39,9 @@ class NeopixelFlasher {
       }
     }
 
+    /////////////////////////////////////////////////////////////////////////
+    // based on code copied from the Adafruit Neopixel examples
+    // rainbow lights 
     void UpdateRainbow() {
       unsigned long currentMillis = millis();
       if (currentMillis - pixelsState.previousMillis > interval) {
@@ -51,7 +55,8 @@ class NeopixelFlasher {
       }
     }
 
-
+    /////////////////////////////////////////////////////////////////////////
+    // copied from the Adafruit Neopixel examples
     // Input a value 0 to 255 to get a color value.
     // The colours are a transition r - g - b - back to r.
     uint32_t Wheel(byte WheelPos) {
@@ -76,6 +81,8 @@ class NeopixelFlasher {
       return packedRGB;
     }
 
+    /////////////////////////////////////////////////////////////////////////
+    // based on code copied from the Adafruit Neopixel examples
     //Theatre-style crawling lights with rainbow effect
     void UpdateTheaterRainbow() {
       unsigned long currentMillis = millis();

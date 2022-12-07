@@ -1,7 +1,10 @@
 #include <ArduinoQueue.h>
+// requires installation via the library manager
+// documentation https://github.com/EinarArnason/ArduinoQueue
+
 #include "TwoWheelDriveRobot.h"
 
-#define DEBUG true
+#define DEBUG false
 #define QUEUE_SIZE 2  // we only need 1 atm :) 
 
 #define MOVE_FORWARD 0
@@ -16,11 +19,13 @@ struct robotState_struct {
   // movement not used atm
   int movement ; // 0=forward ; 1=backward ; 2=turn left ; 3 = turn right
 };
-// queue of states to execute. We only want a single item in queue
+
+// queue of states to execute. We only want a single item in queue at a time
 ArduinoQueue<robotState_struct> stateQueue(QUEUE_SIZE);
 
 // inherit TwoWheelDriveRobot_Scheduler from TwoWheelDriveRobot
 // and just add the scheduling stuff
+
 class TwoWheelDriveRobot_Scheduler: public TwoWheelDriveRobot {
     // this is the structure definiton for the robot state.
     // structures can make the code more structured and easier to understand the context.
@@ -38,8 +43,12 @@ class TwoWheelDriveRobot_Scheduler: public TwoWheelDriveRobot {
       robotState = {0, 0, 0, 0};
     }
     ///////////////////////////////////////////////////////////////////
+    /*
+        Each incoming schedule event is placed on the queue, only if the queue is empty.
+
+    */
     void schedule(int speed1, int speed2, int interval, int movement) {
-      if (stateQueue.isEmpty()) {    // we don't have anything *planned* to do
+      if (stateQueue.isEmpty()) {    // we don't have anything *planned* to do. Could use stateQueue.itemCount()
         robotState_struct queuedState = { speed1, speed2, interval, movement };
         stateQueue.enqueue( queuedState );
         if (DEBUG ) {
@@ -75,8 +84,8 @@ class TwoWheelDriveRobot_Scheduler: public TwoWheelDriveRobot {
         */
         previousMillis = currentMillis;
         // this->drive(robotState.speed1, robotState.speed2);
-      } else {
-        ; // place holder
+      } else {  // end if (currentMillis - previousMillis > robotState.interval) 
+        ; // place holder for what to do if not 
       }
 
       this->drive(robotState.speed1, robotState.speed2);
