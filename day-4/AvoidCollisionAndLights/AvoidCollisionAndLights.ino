@@ -60,14 +60,14 @@ void loop() {
   int baseSpeed2 = BASE_ROBOT_SPEED;
   int speedLeft  = baseSpeed1 * calculateMotorGain(1, baseSpeed1);
   int speedRight = baseSpeed2 * calculateMotorGain(2, baseSpeed2);
-  int durationDelay = 0; // no delay by default 
+  int durationDelay = 0; // no delay by default
   byte movement =  MOVE_FORWARD;
 
   if (!DIAGNOSTIC_MODE) { // diagnostic mode will cancel all movement
     if (weighed < TURNING_POINT && weighed >= 1) {  //  proximity alert!
       movement = MOVE_BACKWARD;
       durationDelay = CHANGE_DIRECTION_DURATION;
-      robot.schedule(-speedLeft, -speedRight, durationDelay, movement);
+      robot.schedule(movement, durationDelay, -speedLeft, -speedRight  );
       // randomly turn either left or right
       int direction = random(0, 2);
       switch (direction) {
@@ -84,8 +84,8 @@ void loop() {
       weighed = 0;
     } else {  // no proximity alert!
     }
-    robot.schedule(speedLeft, speedRight, durationDelay, movement);
-  } // end of non-diagnostic mode 
+    robot.schedule(movement, durationDelay, speedLeft, speedRight  );
+  } // end of non-diagnostic mode
   if (DEBUG) {
     // debug mode
     Serial.print(" speedleft=");
